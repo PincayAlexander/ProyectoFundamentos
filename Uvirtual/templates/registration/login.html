@@ -1,0 +1,40 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icono y Nombre -->
+    <link rel="icon" href="{% static 'Uvirtual/image/logo.ico' %}">
+    <title>Uvirtual</title>
+    <!-- Hojas de Estilo -->
+    <link rel="stylesheet" href="{% static 'Uvirtual/style/login.css' %}">
+</head>
+
+<body>
+    <!-- Inicio de sesión -->
+    <div class="container">
+        <div class="form login">
+            <h1 class="form__title">Iniciar Sesión</h1>
+            <form action="{% url 'login' %}" method="post">
+                {% csrf_token %}
+                {{ form.username }}
+                {{ form.password }}
+                {% if form.errors %}
+                <div class="login__error">
+                    <i class="fa-solid fa-circle-exclamation"></i>
+                    <b>Error:</b> Usuario o contraseña incorrecto. <br>
+                    Por favor, inténtelo de nuevo.
+                </div>
+                {% endif %}
+                <div class="login__urls">
+                    <a href="#">¿Olvidaste tu contraseña? </a>
+                </div>
+                <input type="submit" value="Acceder" class="login__button" />
+            </form>
+        </div>
+    </div><!-- formulario-->
+    </div>
+</body>

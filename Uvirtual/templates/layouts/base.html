@@ -1,0 +1,58 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Icono y Nombre -->
+    <link rel="icon" href="{% static 'Uvirtual/image/logo.ico' %}">
+    <title>Uvirtual</title>
+    <!-- Hojas de Estilo -->
+    <link rel="stylesheet" href="{% static 'Uvirtual/style/base.css' %}">
+    {% block headAdd %}{% endblock %}
+</head>
+
+<body>
+    <!-- Menú Principal -->
+    <header>
+        <nav class="navbar">
+            <div class="navbar__logo">
+                <img src="{% static 'Uvirtual/image/logo.ico' %}" alt="logo">
+            </div>
+            <ul class="navbar__links">
+                <li class="navbar__links--item"><a href="{% url 'calificacion' %}">
+                    <p>CALIFICACIONES</p></a>
+                </li>
+                <li class="navbar__links--item"><a href="{% url 'actividad' %}">
+                    <p>ACTIVIDADES</p></a>
+                </li>
+                <li class="navbar__links--item"><a href="{% url 'horario' %}">
+                    <p>HORARIO</p></a>
+                </li>
+                <li class="navbar__links--item"><a href="{% url 'citacion' %}">
+                    <p>CITACION</p></a>
+                </li>
+                <li class="navbar__links--item"><a href="{% url 'tutoria' %}">
+                    <p>TURORIA</p></a>
+                </li>
+                <li>
+                    <form method="post" action="{% url 'logout' %}">
+                        {% csrf_token %}
+                        <button type="submit" class="navbar__button--logout">
+                            <p>Cerrar Sesión</p>
+                        </button>
+                    </form>
+                </li>
+            </ul>
+        </nav>
+    </header>
+    <!-- Contenido de la página -->
+    {% block contenido %}{% endblock %}
+
+    <footer class="footer">
+        <p>©</p>
+    </footer>
+</body>
+
+</html>
