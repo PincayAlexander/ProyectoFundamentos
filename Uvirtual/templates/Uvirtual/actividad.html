@@ -29,6 +29,7 @@
         }
 
         input,
+        select,
         textarea,
         button {
             display: block;
@@ -68,7 +69,18 @@
     <div class="container">
         <h1>Gestión de Actividades</h1>
 
-        <form id="activity-form">
+        <form id="subject-form">
+            <label for="subject-select">Selecciona la materia:</label>
+            <select id="subject-select" required>
+                <option value="">Seleccione una materia</option>
+                <option value="Matemáticas">Matemáticas</option>
+                <option value="Lenguaje">Lenguaje</option>
+                <option value="Historia">Historia</option>
+            </select>
+            <button type="submit">Seleccionar Materia</button>
+        </form>
+
+        <form id="activity-form" style="display: none;">
             <input type="text" id="activity-name" placeholder="Nombre de la actividad" required>
             <input type="date" id="activity-start-date" placeholder="Fecha de inicio de la actividad" required>
             <input type="date" id="activity-end-date" placeholder="Fecha de finalización de la actividad" required>
@@ -82,21 +94,32 @@
     </div>
 
     <script>
+        document.getElementById('subject-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const subject = document.getElementById('subject-select').value;
+            if (subject) {
+                document.getElementById('subject-form').style.display = 'none';
+                document.getElementById('activity-form').style.display = 'block';
+                document.getElementById('activity-form').dataset.subject = subject;
+            }
+        });
+
         document.getElementById('activity-form').addEventListener('submit', function (e) {
             e.preventDefault();
             const name = document.getElementById('activity-name').value;
             const startDate = document.getElementById('activity-start-date').value;
             const endDate = document.getElementById('activity-end-date').value;
             const description = document.getElementById('activity-description').value;
-            addActivity(name, startDate, endDate, description);
+            const subject = document.getElementById('activity-form').dataset.subject;
+            addActivity(subject, name, startDate, endDate, description);
             document.getElementById('activity-form').reset();
         });
 
-        function addActivity(name, startDate, endDate, description) {
+        function addActivity(subject, name, startDate, endDate, description) {
             const list = document.getElementById('activity-list');
             const li = document.createElement('li');
             li.innerHTML = `
-                <span><strong>${name}</strong></span>
+                <span><strong>${subject}</strong> - <strong>${name}</strong></span>
                 <p>Fecha de inicio: ${startDate}</p>
                 <p>Fecha de finalización: ${endDate}</p>
                 <p>${description}</p>
@@ -117,18 +140,19 @@
             const li = button.parentElement.parentElement;
             const span = li.querySelector('span');
             const p = li.querySelectorAll('p');
-            const name = span.textContent;
+            const [subject, name] = span.textContent.split(' - ');
             const startDate = p[0].textContent.split(': ')[1];
             const endDate = p[1].textContent.split(': ')[1];
             const description = p[2].textContent;
 
+            const newSubject = prompt('Modificar materia de la actividad', subject);
             const newName = prompt('Modificar nombre de la actividad', name);
             const newStartDate = prompt('Modificar fecha de inicio de la actividad', startDate);
             const newEndDate = prompt('Modificar fecha de finalización de la actividad', endDate);
             const newDescription = prompt('Modificar descripción de la actividad', description);
 
-            if (newName && newStartDate && newEndDate && newDescription) {
-                span.innerHTML = `<strong>${newName}</strong>`;
+            if (newSubject && newName && newStartDate && newEndDate && newDescription) {
+                span.innerHTML = `<strong>${newSubject}</strong> - <strong>${newName}</strong>`;
                 p[0].textContent = `Fecha de inicio: ${newStartDate}`;
                 p[1].textContent = `Fecha de finalización: ${newEndDate}`;
                 p[2].textContent = newDescription;
