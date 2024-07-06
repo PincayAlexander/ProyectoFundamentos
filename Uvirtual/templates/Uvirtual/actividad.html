@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -9,30 +10,38 @@
         body {
             font-family: Arial, sans-serif;
         }
+
         .container {
             max-width: 600px;
             margin: 0 auto;
             padding: 20px;
             border: 1px solid #ccc;
             border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.1);
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
+
         h1 {
             text-align: center;
         }
+
         form {
             margin-bottom: 20px;
         }
-        input, textarea, button {
+
+        input,
+        textarea,
+        button {
             display: block;
             width: 100%;
             padding: 10px;
             margin: 5px 0;
         }
+
         ul {
             list-style-type: none;
             padding: 0;
         }
+
         li {
             display: flex;
             flex-direction: column;
@@ -41,78 +50,92 @@
             border-radius: 4px;
             margin: 5px 0;
         }
+
         .actions {
             margin-top: 10px;
             display: flex;
             justify-content: flex-end;
         }
+
         .actions button {
             margin-left: 10px;
         }
     </style>
 </head>
+
 <body>
 
-<div class="container">
-    <h1>Gestión de Actividades</h1>
+    <div class="container">
+        <h1>Gestión de Actividades</h1>
 
-    <form id="activity-form">
-        <input type="text" id="activity-name" placeholder="Nombre de la actividad" required>
-        <input type="date" id="activity-date" placeholder="Fecha de la actividad" required>
-        <textarea id="activity-description" placeholder="Descripción de la actividad" required></textarea>
-        <button type="submit">Agregar Actividad</button>
-    </form>
+        <form id="activity-form">
+            <input type="text" id="activity-name" placeholder="Nombre de la actividad" required>
+            <input type="date" id="activity-start-date" placeholder="Fecha de inicio de la actividad" required>
+            <input type="date" id="activity-end-date" placeholder="Fecha de finalización de la actividad" required>
+            <textarea id="activity-description" placeholder="Descripción de la actividad" required></textarea>
+            <button type="submit">Agregar Actividad</button>
+        </form>
 
-    <ul id="activity-list">
-        <!-- Las actividades serán listadas aquí -->
-    </ul>
-</div>
+        <ul id="activity-list">
+            <!-- Las actividades serán listadas aquí -->
+        </ul>
+    </div>
 
-<script>
-    document.getElementById('activity-form').addEventListener('submit', function(e) {
-        e.preventDefault();
-        const name = document.getElementById('activity-name').value;
-        const date = document.getElementById('activity-date').value;
-        const description = document.getElementById('activity-description').value;
-        addActivity(name, date, description);
-        document.getElementById('activity-form').reset();
-    });
+    <script>
+        document.getElementById('activity-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+            const name = document.getElementById('activity-name').value;
+            const startDate = document.getElementById('activity-start-date').value;
+            const endDate = document.getElementById('activity-end-date').value;
+            const description = document.getElementById('activity-description').value;
+            addActivity(name, startDate, endDate, description);
+            document.getElementById('activity-form').reset();
+        });
 
-    function addActivity(name, date, description) {
-        const list = document.getElementById('activity-list');
-        const li = document.createElement('li');
-        li.innerHTML = `
-            <span><strong>${name}</strong> - ${date}</span>
-            <p>${description}</p>
-            <div class="actions">
-                <button onclick="editActivity(this)">Modificar</button>
-                <button onclick="deleteActivity(this)">Eliminar</button>
-            </div>
-        `;
-        list.appendChild(li);
-    }
-
-    function deleteActivity(button) {
-        const li = button.parentElement.parentElement;
-        li.remove();
-    }
-
-    function editActivity(button) {
-        const li = button.parentElement.parentElement;
-        const span = li.querySelector('span');
-        const p = li.querySelector('p');
-        const [name, date] = span.textContent.split(' - ');
-
-        const newName = prompt('Modificar nombre de la actividad', name);
-        const newDate = prompt('Modificar fecha de la actividad', date);
-        const newDescription = prompt('Modificar descripción de la actividad', p.textContent);
-
-        if (newName && newDate && newDescription) {
-            span.innerHTML = `<strong>${newName}</strong> - ${newDate}`;
-            p.textContent = newDescription;
+        function addActivity(name, startDate, endDate, description) {
+            const list = document.getElementById('activity-list');
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <span><strong>${name}</strong></span>
+                <p>Fecha de inicio: ${startDate}</p>
+                <p>Fecha de finalización: ${endDate}</p>
+                <p>${description}</p>
+                <div class="actions">
+                    <button onclick="editActivity(this)">Modificar</button>
+                    <button onclick="deleteActivity(this)">Eliminar</button>
+                </div>
+            `;
+            list.appendChild(li);
         }
-    }
-</script>
+
+        function deleteActivity(button) {
+            const li = button.parentElement.parentElement;
+            li.remove();
+        }
+
+        function editActivity(button) {
+            const li = button.parentElement.parentElement;
+            const span = li.querySelector('span');
+            const p = li.querySelectorAll('p');
+            const name = span.textContent;
+            const startDate = p[0].textContent.split(': ')[1];
+            const endDate = p[1].textContent.split(': ')[1];
+            const description = p[2].textContent;
+
+            const newName = prompt('Modificar nombre de la actividad', name);
+            const newStartDate = prompt('Modificar fecha de inicio de la actividad', startDate);
+            const newEndDate = prompt('Modificar fecha de finalización de la actividad', endDate);
+            const newDescription = prompt('Modificar descripción de la actividad', description);
+
+            if (newName && newStartDate && newEndDate && newDescription) {
+                span.innerHTML = `<strong>${newName}</strong>`;
+                p[0].textContent = `Fecha de inicio: ${newStartDate}`;
+                p[1].textContent = `Fecha de finalización: ${newEndDate}`;
+                p[2].textContent = newDescription;
+            }
+        }
+    </script>
 
 </body>
+
 </html>
