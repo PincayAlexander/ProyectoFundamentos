@@ -10,15 +10,16 @@
     <title>Uvirtual</title>
     <!-- Hojas de Estilo -->
     <link rel="stylesheet" href="{% static 'Uvirtual/style/base.css' %}">
+    <!-- Iconos -->
+    <script src="https://kit.fontawesome.com/0fb473f9ca.js" crossorigin="anonymous"></script>
     {% block headAdd %}{% endblock %}
 </head>
 
 <body>
-    <!-- Menú Principal -->
-    <header>
+    <header><!-- Menú Principal -->
         <nav class="navbar">
             <div class="navbar__logo">
-                <img src="{% static 'Uvirtual/image/logo.ico' %}" alt="logo">
+                <img src="{% static 'Uvirtual/image/logoUEFU.png' %}" alt="logo">
             </div>
             <ul class="navbar__links">
                 <li class="navbar__links--item"><a href="{% url 'calificacion' %}">

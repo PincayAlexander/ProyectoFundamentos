@@ -2,20 +2,20 @@ from django.shortcuts import render, redirect
 from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.views import LoginView
+from django.contrib.auth.views import LoginView, LogoutView
 from django.contrib.auth import logout
 
 # Inicio de sesión
 class CustomLoginView(LoginView):
     template_name = "registration/login.html"
-    form_class = loginForm
+    authentication_form = loginForm
 
 # Cerrar sesión
-def logout_view(request):
-    logout(request)
-    return redirect('login')
+class CustomLogoutView(LogoutView):
+    next_page = 'login'
 
-
+@login_required
+# Vista de inicio
 def index_view (requeset):
     return render(requeset, 'Uvirtual/index.html')
 

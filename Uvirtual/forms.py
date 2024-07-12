@@ -4,20 +4,20 @@ from django.contrib.auth.forms import AuthenticationForm
 # Formulario de inicio de sesión
 class loginForm(AuthenticationForm):
     username = forms.CharField(
-        label=None, 
-        max_length=150,
+        label='Usuario', 
+        max_length=50,
         widget=forms.TextInput(attrs={
             'placeholder': 'Usuario',
-            'class': 'login__campo',
+            'class': 'campo',
             'autofocus': True,
             'required': True,
         }))
     password = forms.CharField(
-        label=None, 
+        label='Contraseña', 
         max_length=50,
         widget=forms.PasswordInput(attrs={
             'placeholder': 'Contraseña',
-            'class': 'login__campo',
+            'class': 'campo',
             'required': True,
         }))
     def __init__(self, *args, **kwargs):
