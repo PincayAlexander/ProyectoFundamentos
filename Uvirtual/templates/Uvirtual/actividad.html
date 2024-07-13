@@ -2,7 +2,8 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="style/actividad.css">
+    <link rel="stylesheet" href="{% static `style/actividad.css` %}">
+    <script src="{% static `script/activity.js` %}"></script>
 {% endblock %}
 
 {% block contenido %}
