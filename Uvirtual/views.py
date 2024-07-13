@@ -3,7 +3,6 @@ from .models import *
 from .forms import *
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.views import LoginView, LogoutView
-from django.contrib.auth import logout
 
 # Inicio de sesión
 class CustomLoginView(LoginView):
@@ -28,6 +27,12 @@ def calificacion_view (request):
 # Actividad
 def actividad_view (request):
     return render(request, 'Uvirtual/actividad.html')
+
+@login_required
+# Asignatura
+def asignatura_view (request):
+    return render(request, 'Uvirtual/asignatura.html')
+
 
 @login_required
 # Horario

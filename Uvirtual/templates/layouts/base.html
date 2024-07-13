@@ -16,40 +16,53 @@
 </head>
 
 <body>
-    <header><!-- Menú Principal -->
-        <nav class="navbar">
-            <div class="navbar__logo">
-                <img src="{% static 'Uvirtual/image/logoUEFU.png' %}" alt="logo">
-            </div>
-            <ul class="navbar__links">
-                <li class="navbar__links--item"><a href="{% url 'calificacion' %}">
-                    <p>CALIFICACIONES</p></a>
-                </li>
-                <li class="navbar__links--item"><a href="{% url 'actividad' %}">
-                    <p>ACTIVIDADES</p></a>
-                </li>
-                <li class="navbar__links--item"><a href="{% url 'horario' %}">
-                    <p>HORARIO</p></a>
-                </li>
-                <li class="navbar__links--item"><a href="{% url 'citacion' %}">
-                    <p>CITACION</p></a>
-                </li>
-                <li class="navbar__links--item"><a href="{% url 'tutoria' %}">
-                    <p>TURORIA</p></a>
-                </li>
-                <li>
+    <header>
+        <div class="navbar">
+            <img src="{% static 'Uvirtual/image/UEFU-logo2.png' %}" alt="logo">
+            <h1>U-Virtual</h1>
+                <nav class="optionsUser">
+                    <p><i class="fa-solid fa-user"></i>Vacio</p>
                     <form method="post" action="{% url 'logout' %}">
                         {% csrf_token %}
                         <button type="submit" class="navbar__button--logout">
                             <p>Cerrar Sesión</p>
                         </button>
                     </form>
+                </nav>
+        </div>
+        
+        <!-- Menú Principal -->
+        <nav class="sidebar">
+            <div class="sidebar__header">
+                <img src="{% static 'Uvirtual/image/logoUEFU.png' %}" alt="">
+                <strong>U-VIRTUAL</strong>
+            </div>
+            <ul class="sidebar__links">
+                <li class="sidebar__links--item"><a href="{% url 'calificacion' %}">
+                    <i class="fa-brands fa-readme"></i><p>CALIFICACIONES</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'actividad' %}">
+                    <i class="fa-solid fa-clipboard"></i><p>ACTIVIDADES</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'horario' %}">
+                    <i class="fa-regular fa-calendar-days"></i><p>HORARIO</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'citacion' %}">
+                    <i class="fa-solid fa-user-clock"></i><p>CITACION</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'asignatura' %}">
+                    <i class="fa-solid fa-book-open"></i><p>Asignatura</p></a>
+                </li>
+                <li class="sidebar__links--item"><a href="{% url 'tutoria' %}">
+                    <i class="fa-solid fa-users"></i><p>TURORIA</p></a>
                 </li>
             </ul>
         </nav>
     </header>
     <!-- Contenido de la página -->
-    {% block contenido %}{% endblock %}
+     <section>
+        {% block contenido %}{% endblock %}
+     </section>
 
     <footer class="footer">
         <p>©</p>
