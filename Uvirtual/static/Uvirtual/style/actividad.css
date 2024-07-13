@@ -1,18 +1,10 @@
 body {
     font-family: Arial, sans-serif;
-    background-color: color red;
-    margin: 0;
-    padding: 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100vh;
 }
 
 .container {
     max-width: 600px;
-    width: 100%;
-    background-color: color yellow;
+    margin: 0 auto;
     padding: 20px;
     border: 1px solid #ccc;
     border-radius: 8px;
@@ -21,54 +13,20 @@ body {
 
 h1 {
     text-align: center;
-    color: #333;
 }
 
 form {
     margin-bottom: 20px;
 }
 
-label {
-    display: block;
-    margin-bottom: 5px;
-    font-weight: bold;
-}
-
+input,
 select,
-input[type="text"],
-input[type="date"],
 textarea,
 button {
+    display: block;
     width: 100%;
     padding: 10px;
     margin: 5px 0;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    font-size: 16px;
-}
-
-select {
-    appearance: none;
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background-color: #fff;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='6' viewBox='0 0 12 6'%3E%3Cpath d='M6 6L0 0h12' fill='%23000000'/%3E%3C/svg%3E");
-    background-repeat: no-repeat;
-    background-position-x: calc(100% - 12px);
-    background-position-y: center;
-    padding-right: 30px;
-}
-
-button {
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s;
-}
-
-button:hover {
-    background-color: #0056b3;
 }
 
 ul {
@@ -77,22 +35,29 @@ ul {
 }
 
 li {
-    background-color: #f1f1f1;
+    display: flex;
+    flex-direction: column;
+    padding: 10px;
     border: 1px solid #ccc;
     border-radius: 4px;
-    margin: 10px 0;
-    padding: 10px;
+    margin: 5px 0;
+}
+
+.actions {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
 }
 
 .actions button {
     margin-left: 10px;
-    background-color: #28a745;
 }
 
-.actions button:last-child {
-    background-color: #dc3545;
+.back-button {
+    display: none;
+    margin-bottom: 20px;
 }
 
-.actions button:hover {
-    opacity: 0.9;
+.upload-button {
+    display: none;
 }

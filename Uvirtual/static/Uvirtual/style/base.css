@@ -145,6 +145,7 @@ html {
     display: flex;
     height: calc(100vh - 90px);
     width: calc(100% - 200px); /*- 70px);*/
+    flex-direction: column;
 }
 
 .sidebar.expand ~ .content {

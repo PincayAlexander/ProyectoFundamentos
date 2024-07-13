@@ -2,34 +2,57 @@
 {% load static %}
 
 {% block head %}
-    <link rel="stylesheet" href="{% static `style/actividad.css` %}">
-    <script src="{% static `script/activity.js` %}"></script>
+    <link rel="stylesheet" href="{% static 'style/actividad.css' %}">
+    <script src="{% static 'script/activity.js' %}"></script>
 {% endblock %}
 
 {% block contenido %}
-    <div class="container">
-        <h1>Gestión de Actividades</h1>
+   
+<h1>Gestión de Actividades</h1>
 
-        <form id="subject-form">
-            <label for="subject-select">Selecciona la materia:</label>
-            <select id="subject-select" required>
-                <option value="">Seleccione una materia</option>
-                <option value="Matemáticas">Matemáticas</option>
-                <option value="Lenguaje">Lenguaje</option>
-                <option value="Historia">Historia</option>
-            </select>
-            <button type="submit">Seleccionar Materia</button>
-        </form>
+<form id="role-form">
+    <label for="role-select">Ingresar como:</label>
+    <select id="role-select" required>
+        <option value="">Seleccione un rol</option>
+        <option value="Estudiante">Estudiante</option>
+        <option value="Docente">Docente</option>
+    </select>
+    <input type="text" id="email-input" placeholder="Correo personal" required>
+    <button type="submit">Ingresar</button>
+</form>
 
-        <form id="activity-form" style="display: none;">
-            <input type="text" id="activity-name" placeholder="Nombre de la actividad" required>
-            <input type="date" id="activity-start-date" placeholder="Fecha de inicio de la actividad" required>
-            <input type="date" id="activity-end-date" placeholder="Fecha de finalización de la actividad" required>
-            <textarea id="activity-description" placeholder="Descripción de la actividad" required></textarea>
-            <button type="submit">Agregar Actividad</button>
-        </form>
+<button id="role-back-button" class="back-button" onclick="showRoleForm()">Regresar</button>
 
+<form id="subject-form" style="display: none;">
+    <label for="subject-select">Selecciona la materia:</label>
+    <select id="subject-select" required>
+        <option value="">Seleccione una materia</option>
+        <option value="Matemáticas">Matemáticas</option>
+        <option value="Lenguaje">Lenguaje</option>
+        <option value="Historia">Historia</option>
+        <option value="Ciencias Naturales">Ciencias Naturales</option>
+        <option value="Inglés">Inglés</option>
+        <option value="Computación">Computación</option>
+    </select>
+    <button type="submit">Seleccionar Materia</button>
+</form>
 
-    </div>
+<button id="subject-back-button" class="back-button" onclick="showSubjectForm()">Regresar</button>
+
+<form id="activity-form" style="display: none;">
+    <input type="text" id="activity-name" placeholder="Nombre de la actividad" required>
+    <input type="date" id="activity-start-date" placeholder="Fecha de inicio de la actividad" required>
+    <input type="date" id="activity-end-date" placeholder="Fecha de finalización de la actividad" required>
+    <textarea id="activity-description" placeholder="Descripción de la actividad" required></textarea>
+    <button type="submit">Agregar Actividad</button>
+</form>
+
+<button id="activity-back-button" class="back-button" onclick="showSubjectForm()">Regresar</button>
+
+<ul id="activity-list">
+    <!-- Las actividades serán listadas aquí -->
+</ul>
+
+  
 
 {% endblock %}
