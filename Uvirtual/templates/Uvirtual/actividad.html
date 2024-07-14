@@ -9,19 +9,7 @@
 {% block contenido %}
 <h1>Gestión de Actividades</h1>
 
-<form id="role-form">
-    <label for="role-select">Ingresar como:</label>
-    <select id="role-select" required>
-        <option value="">Seleccione un rol</option>
-        <option value="Estudiante">Estudiante</option>
-        <option value="Docente">Docente</option>
-    </select>
-    <button type="submit">Ingresar</button>
-</form>
-
-<button id="role-back-button" class="back-button" onclick="showRoleForm()">Regresar</button>
-
-<form id="subject-form" style="display: none;">
+<form id="subject-form">
     <label for="subject-select">Selecciona la materia:</label>
     <select id="subject-select" required>
         <option value="">Seleccione una materia</option>
@@ -32,10 +20,10 @@
         <option value="Inglés">Inglés</option>
         <option value="Computación">Computación</option>
     </select>
-    <button type="submit">Seleccionar Materia</button>
+    <button type="submit">Ingresar</button> <!-- Cambio de "Seleccionar Materia" a "Ingresar" -->
 </form>
 
-<button id="role-back-button" class="back-button" onclick="showRoleForm()">Regresar</button>
+<button id="subject-back-button" class="back-button" onclick="showSubjectForm()" style="display:none;">Regresar</button>
 
 <form id="activity-form" style="display: none;">
     <input type="text" id="activity-name" placeholder="Nombre de la actividad" required>
@@ -45,11 +33,8 @@
     <button type="submit">Agregar Actividad</button>
 </form>
 
-<button id="role-back-button" class="back-button" onclick="showRoleForm()">Regresar</button>
-
 <ul id="activity-list">
     <!-- Las actividades serán listadas aquí -->
 </ul>
 </div>
 {% endblock %}
-
