@@ -7,7 +7,6 @@
 {% endblock %}
 
 {% block contenido %}
-   
 <h1>Gestión de Actividades</h1>
 
 <form id="role-form">
@@ -17,7 +16,6 @@
         <option value="Estudiante">Estudiante</option>
         <option value="Docente">Docente</option>
     </select>
-    <input type="text" id="email-input" placeholder="Correo personal" required>
     <button type="submit">Ingresar</button>
 </form>
 
@@ -37,7 +35,7 @@
     <button type="submit">Seleccionar Materia</button>
 </form>
 
-<button id="subject-back-button" class="back-button" onclick="showSubjectForm()">Regresar</button>
+<button id="role-back-button" class="back-button" onclick="showRoleForm()">Regresar</button>
 
 <form id="activity-form" style="display: none;">
     <input type="text" id="activity-name" placeholder="Nombre de la actividad" required>
@@ -47,12 +45,11 @@
     <button type="submit">Agregar Actividad</button>
 </form>
 
-<button id="activity-back-button" class="back-button" onclick="showSubjectForm()">Regresar</button>
+<button id="role-back-button" class="back-button" onclick="showRoleForm()">Regresar</button>
 
 <ul id="activity-list">
     <!-- Las actividades serán listadas aquí -->
 </ul>
-
-  
-
+</div>
 {% endblock %}
+
