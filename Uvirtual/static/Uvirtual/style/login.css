@@ -160,7 +160,7 @@ body {
 }
 
 .form__footer--urls {
-    color: #333;
+    color: hsl(234, 100%, 50%);
     text-decoration: none;
     font-size: 0.875rem;
 
@@ -171,7 +171,7 @@ body {
 
 .form__error {
     background-color: #ffe3e5;
-    color: #84141f;
+    color: #628414;
     margin: 0 .75rem;
     padding: .65rem 0;
     border: 1px solid #f4bbc1;
